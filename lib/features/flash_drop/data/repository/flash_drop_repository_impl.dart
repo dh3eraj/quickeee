@@ -1,4 +1,5 @@
 import 'dart:convert' show json;
+import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:quickeee/core/exceptions/custom_exception.dart';
@@ -15,7 +16,8 @@ class FlashDropRepositoryImpl implements FlashDropRepository {
     try {
       final jsonString = await _flashDropLocalClient.loadWatchData();
       return right(WatchDataResponseModel.fromJson(json.decode(jsonString)));
-    } catch (_) {
+    } catch (e, s) {
+      log('e : $e\n s : $s');
       return left(CustomException());
     }
   }

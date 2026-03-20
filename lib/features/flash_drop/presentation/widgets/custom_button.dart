@@ -49,7 +49,7 @@ class _HoldToSecureButtonState extends State<HoldToSecureButton>
     progressController.stop();
     progressController.forward();
 
-    setState(() {}); 
+    setState(() {});
   }
 
   void _onHoldEnd() {
@@ -58,7 +58,8 @@ class _HoldToSecureButtonState extends State<HoldToSecureButton>
     isHolding = false;
 
     if (!progressController.isCompleted) {
-      progressController.reverse(); 
+      progressController.stop();
+      progressController.reset();
     }
   }
 

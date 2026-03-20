@@ -53,12 +53,12 @@ class WatchUpdate {
         ? null
         : DateTime.parse(json["timestamp"]),
     currentPrice: json["currentPrice"],
-    remainingInventory: json["remainingInventory"],
+    remainingInventory: json["quantity"],
   );
 
   Map<String, dynamic> toJson() => {
     "timestamp": timestamp?.toIso8601String(),
     "currentPrice": currentPrice,
-    "remainingInventory": remainingInventory,
+    "quantity": remainingInventory,
   };
 }
