@@ -1,11 +1,15 @@
 class WatchDataResponseModel {
   final String? watchId;
-  final int? basePrice;
+  final String? watchName;
+  final double? basePrice;
+  final String? currency;
   final int? totalQuantity;
   final List<WatchUpdate>? updates;
 
   WatchDataResponseModel({
     this.watchId,
+    this.watchName,
+    this.currency,
     this.basePrice,
     this.totalQuantity,
     this.updates,
@@ -14,6 +18,8 @@ class WatchDataResponseModel {
   factory WatchDataResponseModel.fromJson(Map<String, dynamic> json) =>
       WatchDataResponseModel(
         watchId: json["watchId"],
+        watchName: json["watchName"],
+        currency: json["currency"],
         basePrice: json["basePrice"],
         totalQuantity: json["totalQuantity"],
         updates: json["updates"] == null
@@ -25,6 +31,8 @@ class WatchDataResponseModel {
 
   Map<String, dynamic> toJson() => {
     "watchId": watchId,
+    "watchName": watchName,
+    "currency": currency,
     "basePrice": basePrice,
     "totalQuantity": totalQuantity,
     "updates": updates == null
@@ -35,7 +43,7 @@ class WatchDataResponseModel {
 
 class WatchUpdate {
   final DateTime? timestamp;
-  final int? currentPrice;
+  final double? currentPrice;
   final int? remainingInventory;
 
   WatchUpdate({this.timestamp, this.currentPrice, this.remainingInventory});

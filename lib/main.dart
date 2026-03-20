@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemChrome, DeviceOrientation;
+import 'package:flutter_screenutil/flutter_screenutil.dart' show ScreenUtilInit;
 import 'package:quickeee/configs/dependency_injection/dependency_injection.dart';
 import 'package:quickeee/configs/routes/routes.dart';
 
@@ -15,11 +16,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Quickeee',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      onGenerateRoute: Routes.onGenerateRoute,
+    return ScreenUtilInit(
+      designSize: const Size(376, 812),
+      minTextAdapt: true,
+      splitScreenMode: false,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Quickeee',
+        theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+        onGenerateRoute: Routes.onGenerateRoute,
+      ),
     );
   }
 }
