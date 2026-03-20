@@ -1,43 +1,56 @@
-# State Management
 
-I have used **flutter_bloc** for state management, implementing a scalable approach using Cubit and custom states.
+---
 
-- The states for the *Flash Drop* feature are defined in:
-  `lib/features/flash_drop/presentation/bloc/flash_drop_state.dart`
+## 🧠 State Management
 
-- These states represent different UI conditions such as:
+The project uses **flutter_bloc (Cubit)** for managing application state.
+
+### Key Highlights:
+- Custom states represent UI conditions:
   - Loading
   - Success
   - Error
+- Cubit handles business logic and emits states accordingly
+- UI listens to state changes and rebuilds reactively
 
-- The logic is handled in:
-  `lib/features/flash_drop/presentation/bloc/flash_drop_cubit.dart`
+### Benefits:
+- Predictable state transitions  
+- Clear separation of UI and logic  
+- Easier debugging and testing  
 
-- The Cubit emits states based on business logic and API responses, ensuring separation between UI and logic.
+---
 
-
-# Project Architecture
-
-I have implemented **Clean Architecture** to ensure scalability, maintainability, and testability.
-
-## Layers
+## 🏗️ Layers
 
 ### 1. Presentation Layer
-- UI (Widgets)
-- Bloc/Cubit for state management
+- Contains UI (Widgets)
+- Uses Cubit for state management
+- Responsible for rendering UI based on state
+
+---
 
 ### 2. Domain Layer
-- Business logic
-- Use cases
-- Entities
+- Contains business logic
+- Defines repository contracts (interfaces)
+- Independent of frameworks and external dependencies
+
+---
 
 ### 3. Data Layer
-- API / Data sources
-- Repository implementations
-- Models
+- Implements repository interfaces
+- Handles data fetching and parsing
+- Contains:
+  - Data sources (local/API)
+  - Models
+  - Repository implementations
 
-## Benefits
-- Clear separation of concerns  
-- Easy to test and maintain  
-- Scalable for large applications  
-- Improved readability and reusability  
+---
+
+## ⚡ Performance Optimization
+
+### Isolate-based JSON Parsing
+
+To efficiently handle large datasets, JSON parsing is offloaded to a **background isolate**:
+Isolates run as independent threads with their own memory, communicating via message passing, ensuring heavy computations don’t block the main UI thread.
+```dart
+final content = await Isolate.run(() => _processJson(jsonString));
