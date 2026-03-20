@@ -7,7 +7,7 @@ import 'package:quickeee/core/models/price_point.dart';
 import 'package:quickeee/core/painters/chart_painter.dart';
 import 'package:quickeee/core/utils/utils.dart';
 import 'package:quickeee/features/flash_drop/data/models/watch_data_response_model.dart';
-import 'package:quickeee/features/flash_drop/presentation/widgets/custom_button.dart';
+import 'package:quickeee/features/flash_drop/presentation/widgets/hold_to_secure_button.dart';
 
 class LiveChart extends StatefulWidget {
   final String? name;
